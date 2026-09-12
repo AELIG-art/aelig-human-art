@@ -5,4 +5,3 @@ This directory contains event-specific rules, sponsor scouting, submission requi
 - [ETHOnline 2026 dossier](ethonline-2026.md)
 
 Event rules and partner bounties can change. Re-check the official event dashboard and sponsor pages immediately before submission.
-

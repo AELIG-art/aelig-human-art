@@ -36,7 +36,5 @@ export function parseNfcUrl(rawUrl: string | null): TagRead | null {
 }
 
 export function isDemoTag(read: TagRead): boolean {
-  return (
-    read.tagId === demoTagRead.tagId && read.counter === demoTagRead.counter
-  );
+  return read.tagId === demoTagRead.tagId && read.counter === demoTagRead.counter;
 }

@@ -6,22 +6,22 @@ An artist associates signed artwork metadata with a registered physical tag. A c
 
 Hard constraints:
 
-* The tag cannot be changed. Its existing message remains AES-encrypted `id || counter || check byte`.
-* Only previously registered, active tag IDs are accepted.
-* A newly accepted counter must exceed the last accepted counter for that tag.
-* The AES secret never enters public blockchain state or public execution.
-* The artist explicitly approves/signs metadata using a wallet associated with their World ID verification.
-* Verification returns the artist identity reference as well as the tag result.
+- The tag cannot be changed. Its existing message remains AES-encrypted `id || counter || check byte`.
+- Only previously registered, active tag IDs are accepted.
+- A newly accepted counter must exceed the last accepted counter for that tag.
+- The AES secret never enters public blockchain state or public execution.
+- The artist explicitly approves/signs metadata using a wallet associated with their World ID verification.
+- Verification returns the artist identity reference as well as the tag result.
 
 “Tag content” means logical metadata associated with the tag ID. It does NOT mean adding metadata or a signature to the immutable encrypted payload or writing new data into the chip.
 
 ## 2. Three separate claims
 
-| Evidence | Establishes | Does not establish |
-|----------|-------------|--------------------|
-| AES validation + registered ID + advancing counter | A message passes the legacy tag protocol and current registry/replay rules | Physical proximity now, ownership, or authenticity of the attached artwork |
-| World ID proof | The selected human/uniqueness credential policy was satisfied in the configured scope | Legal name, artistic reputation, authorship, or wallet control by itself |
-| Artist wallet signature | The authorized wallet approved the exact metadata/tag association | That the person physically made the artwork or still owns it |
+| Evidence                                           | Establishes                                                                           | Does not establish                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| AES validation + registered ID + advancing counter | A message passes the legacy tag protocol and current registry/replay rules            | Physical proximity now, ownership, or authenticity of the attached artwork |
+| World ID proof                                     | The selected human/uniqueness credential policy was satisfied in the configured scope | Legal name, artistic reputation, authorship, or wallet control by itself   |
+| Artist wallet signature                            | The authorized wallet approved the exact metadata/tag association                     | That the person physically made the artwork or still owns it               |
 
 Product wording: “Registered tag; metadata signed by a World-ID-verified artist account.” Do not claim “World ID certifies this artwork.” A removable tag can be transferred to a counterfeit object; tamper-evident attachment and provenance procedures are separate requirements.
 
@@ -32,9 +32,15 @@ World ID is not the wallet signing key and should not be modeled as a global pub
 Define a fixed artist-enrollment scope and an application identifier:
 
 ```javascript
-artistId = H(canonicalEncode(
-  "ARTIST_ID_V2", identityProvider, protocolVersion, identityScope, verifiedNullifier
-))
+artistId = H(
+  canonicalEncode(
+    "ARTIST_ID_V2",
+    identityProvider,
+    protocolVersion,
+    identityScope,
+    verifiedNullifier,
+  ),
+);
 ```
 
 `artistId` is our application identifier backed by World ID, not a provider-issued global identity. Store its provider, scope, policy and protocol version. Do not derive it from a nullifier supplied without verified proof. Do not generate a new action scope for every artwork: that would undermine stable artist attribution.
@@ -76,16 +82,15 @@ flowchart TD
 
 Components may be modules within fewer contracts for the hackathon, but trust boundaries remain explicit:
 
-* Artist Registry: verified enrollment, wallet authorization and identity status.
-* Tag Registry: permitted physical IDs, key policy, activation and monotonic counter state.
-* Artwork Registry: immutable signed revisions linking tag, artist and metadata.
-* Verification contract: requests, anti-replay checks and atomic finalization.
-* Confidential verifier: legacy AES decryption only; it does not invent artist identity or authoritatively manage registry state.
-* Metadata storage: content-addressed or otherwise byte-verifiable documents and assets; never trust a mutable URL alone.
-* UI/indexer: renders contract-backed results; not a verification authority.
+- Artist Registry: verified enrollment, wallet authorization and identity status.
+- Tag Registry: permitted physical IDs, key policy, activation and monotonic counter state.
+- Artwork Registry: immutable signed revisions linking tag, artist and metadata.
+- Verification contract: requests, anti-replay checks and atomic finalization.
+- Confidential verifier: legacy AES decryption only; it does not invent artist identity or authoritatively manage registry state.
+- Metadata storage: content-addressed or otherwise byte-verifiable documents and assets; never trust a mutable URL alone.
+- UI/indexer: renders contract-backed results; not a verification authority.
 
 ## 5. Artist onboarding: World ID AND wallet control
-
 
 1. Artist connects a wallet, reviews public-linkability notice, and requests enrollment.
 2. Generate a domain-separated binding challenge containing wallet address, chain, Artist Registry address, operation, nonce and expiry.
@@ -109,7 +114,6 @@ Artist enrollment happens once per account, not once per artwork or collector sc
 
 World ID verification must not let any human claim any registered tag. Separate admission and allocation:
 
-
 1. Registrar registers the canonical tag ID and reserves it for the intended artist account/wallet.
 2. Artist completes enrollment, scans that tag, and obtains an accepted enrollment-purpose read bound to their request.
 3. Artist creates the metadata document, reviews its human-readable rendering, and approves a signature over its digest and tag association.
@@ -129,18 +133,17 @@ Use a specified canonical JSON serialization and hash algorithm, with byte-level
 Conceptual EIP-712 signed payload:
 
 ```javascript
-Domain: name="PhysicalArtwork", version="2", chainId, verifyingContract
-ArtworkAttestation:
-  tagKey
-  artworkId
-  artistId
-  signerWallet
-  metadataHash
-  metadataVersion
-  previousRevisionHash
-  enrollmentRequestId
-  signerNonce
-  deadline
+Domain: ((name = "PhysicalArtwork"), (version = "2"), chainId, verifyingContract);
+ArtworkAttestation: tagKey;
+artworkId;
+artistId;
+signerWallet;
+metadataHash;
+metadataVersion;
+previousRevisionHash;
+enrollmentRequestId;
+signerNonce;
+deadline;
 ```
 
 Do not sign only a title, URI, or metadata hash without the tag and artist binding. Otherwise attribution can be copied to another tag or contract. Use canonical typed encoding, not ambiguous concatenation.
@@ -150,7 +153,6 @@ World MiniKit documents typed-data signing; verify compatibility with the chosen
 Support contract-wallet signature validation, not just EOA `ecrecover`. Validate contract signatures on the wallet’s supported chain/state through the applicable standard; cross-chain wallet validation must not be assumed. Publication records the signature-validation outcome, signing wallet and block. Historical attribution is not reinterpreted merely because wallet authorization changes later.
 
 ## 8. Collector verification flow
-
 
 1. Collector obtains the immutable encrypted tag message.
 2. Commit/reveal binds ciphertext and request context to requester, chain, contract, purpose and random salt; apply a chain-appropriate delay and expiry.
@@ -169,22 +171,17 @@ An accepted tag read may have no artwork association. Return `tagStatus=accepted
 Illustrative schemas, not deployable Solidity:
 
 ```javascript
-ArtistRecord:
-  artistId, identityProvider, identityScope, protocolVersion
-  credentialPolicy, enrollmentBlock, identityEvidenceRef, status
-WalletAuthorization:
-  artistId, wallet, validFrom, revokedAt, authorizationVersion
-TagRecord:
-  tagKey, registered, active, counterInitialized, lastCounter
-  keyPolicyVersion, allocatedArtistId
-ArtworkRevision:
-  tagKey, artworkId, artistId, signerWallet, metadataHash
-  metadataURI, version, previousRevisionHash, attestationDigest
-  signatureEvidenceRef, publicationBlock, status
-VerificationReceipt:
-  requestId, requester, purpose, ciphertextHash, tagKey, counter
-  tagStatus, artworkRevisionHash, artistId, identityStatusAtVerification
-  acceptanceBlock
+ArtistRecord: (artistId, identityProvider, identityScope, protocolVersion);
+(credentialPolicy, enrollmentBlock, identityEvidenceRef, status);
+WalletAuthorization: (artistId, wallet, validFrom, revokedAt, authorizationVersion);
+TagRecord: (tagKey, registered, active, counterInitialized, lastCounter);
+(keyPolicyVersion, allocatedArtistId);
+ArtworkRevision: (tagKey, artworkId, artistId, signerWallet, metadataHash);
+(metadataURI, version, previousRevisionHash, attestationDigest);
+(signatureEvidenceRef, publicationBlock, status);
+VerificationReceipt: (requestId, requester, purpose, ciphertextHash, tagKey, counter);
+(tagStatus, artworkRevisionHash, artistId, identityStatusAtVerification);
+acceptanceBlock;
 ```
 
 Logical async result example (placeholders, not real IDs):
@@ -227,30 +224,29 @@ Per-tag key selection cannot depend on a concealed ID unless the legacy system p
 
 ## 12. Updates, recovery and governance
 
-* Metadata: immutable signed revisions; updates append history and require the authorized artist’s signature, incremented nonce and previous-revision binding. No silent replacement at a URL.
-* Artist attribution: do not permit metadata updates to change the originating artist. Any correction is an explicit, auditable exceptional process.
-* Wallet rotation: preserve artistId; require an approved recovery protocol with fresh identity evidence and explicit authorization rules. Never overwrite based only on matching user-supplied IDs. Freeze automatic recovery until tested for the selected World ID version.
-* Identity revocation/suspension: preserve historical signatures and receipts, display current status separately. Set a documented freshness policy; an old enrollment is not a fresh proof on every scan.
-* Governance: separate registrar, identity-attester, emergency-pause and configuration roles. Production multisig/timelock; no pause or upgrade may erase counters or attribution history.
-* Ownership transfer: separate from authorship and out of scope for MVP. A collector buying an artwork does not replace its original artist.
+- Metadata: immutable signed revisions; updates append history and require the authorized artist’s signature, incremented nonce and previous-revision binding. No silent replacement at a URL.
+- Artist attribution: do not permit metadata updates to change the originating artist. Any correction is an explicit, auditable exceptional process.
+- Wallet rotation: preserve artistId; require an approved recovery protocol with fresh identity evidence and explicit authorization rules. Never overwrite based only on matching user-supplied IDs. Freeze automatic recovery until tested for the selected World ID version.
+- Identity revocation/suspension: preserve historical signatures and receipts, display current status separately. Set a documented freshness policy; an old enrollment is not a fresh proof on every scan.
+- Governance: separate registrar, identity-attester, emergency-pause and configuration roles. Production multisig/timelock; no pause or upgrade may erase counters or attribution history.
+- Ownership transfer: separate from authorship and out of scope for MVP. A collector buying an artwork does not replace its original artist.
 
 ## 13. Decisions and motivations
 
-| Decision | Motivation |
-|----------|------------|
-| External signed metadata, unchanged tag | Honors immutable hardware constraint |
-| World ID plus wallet signature | Separates human-credential evidence from explicit content approval |
-| Scoped artistId | Provides repeatable application attribution without claiming global identity |
-| On-chain artist/tag/artwork bindings | Collector does not rely on a mutable backend mapping |
-| Registrar allocation before artist claim | Human verification alone does not authorize claiming someone else’s tag |
-| Immutable signed revision history | Prevents content substitution and preserves historical evidence |
-| Artist-independent collector scans | Works when the artist is offline |
-| Snapshot attribution at finalization | Prevents UI race between a scan and metadata update |
-| Separate verification statuses | Avoids equating tag validity with artwork authenticity |
-| Explicit adapter trust | Backend-verified identity is not silently presented as trustless |
+| Decision                                 | Motivation                                                                   |
+| ---------------------------------------- | ---------------------------------------------------------------------------- |
+| External signed metadata, unchanged tag  | Honors immutable hardware constraint                                         |
+| World ID plus wallet signature           | Separates human-credential evidence from explicit content approval           |
+| Scoped artistId                          | Provides repeatable application attribution without claiming global identity |
+| On-chain artist/tag/artwork bindings     | Collector does not rely on a mutable backend mapping                         |
+| Registrar allocation before artist claim | Human verification alone does not authorize claiming someone else’s tag      |
+| Immutable signed revision history        | Prevents content substitution and preserves historical evidence              |
+| Artist-independent collector scans       | Works when the artist is offline                                             |
+| Snapshot attribution at finalization     | Prevents UI race between a scan and metadata update                          |
+| Separate verification statuses           | Avoids equating tag validity with artwork authenticity                       |
+| Explicit adapter trust                   | Backend-verified identity is not silently presented as trustless             |
 
 ## 14. Hackathon implementation plan
-
 
 1. Protocol fixture: reproduce legacy AES validation with synthetic keys and real-tag vectors supplied securely.
 2. Registry: implement registered tags, allocation, counter state and mock authenticated async verifier.
@@ -264,20 +260,20 @@ Do not require minting, payments, ownership markets, pure MPC AES or simultaneou
 
 ## 15. Acceptance tests and AI guardrails
 
-* Valid AES with unregistered/inactive ID fails; equal/lower counters fail; out-of-order finalization never decreases state.
-* Wrong request, chain, contract, purpose, key policy or report source fails; duplicate finalization and expired requests fail.
-* World ID proof bound to wallet A cannot enroll wallet B; wrong scope, environment, credential or replayed nonce fails.
-* A valid wallet signature without verified identity cannot publish as a verified artist.
-* A verified human without tag allocation cannot claim it.
-* Changing tag, artistId, metadata bytes, revision, chain or contract invalidates the artist attestation.
-* Contract-wallet signatures are tested on the actual chosen deployment chain; never assume EOA recovery is enough.
-* Publication consumes an enrollment authorization once without consuming its counter twice.
-* Metadata update cannot reset tag counters or rewrite earlier signatures and receipts.
-* Collector gets artist identity from the registered artwork revision, never a client-supplied field.
-* Missing artwork association returns artist=null; missing metadata is not reported as metadata verified.
-* Wallet rotation/revocation cannot retroactively change the recorded signer of an existing work.
-* Artist offline: scanning still works. Reading a stored receipt is clearly historical, not a new proof of freshness.
-* Synthetic identities/keys and mock verifiers cannot be enabled silently in production.
+- Valid AES with unregistered/inactive ID fails; equal/lower counters fail; out-of-order finalization never decreases state.
+- Wrong request, chain, contract, purpose, key policy or report source fails; duplicate finalization and expired requests fail.
+- World ID proof bound to wallet A cannot enroll wallet B; wrong scope, environment, credential or replayed nonce fails.
+- A valid wallet signature without verified identity cannot publish as a verified artist.
+- A verified human without tag allocation cannot claim it.
+- Changing tag, artistId, metadata bytes, revision, chain or contract invalidates the artist attestation.
+- Contract-wallet signatures are tested on the actual chosen deployment chain; never assume EOA recovery is enough.
+- Publication consumes an enrollment authorization once without consuming its counter twice.
+- Metadata update cannot reset tag counters or rewrite earlier signatures and receipts.
+- Collector gets artist identity from the registered artwork revision, never a client-supplied field.
+- Missing artwork association returns artist=null; missing metadata is not reported as metadata verified.
+- Wallet rotation/revocation cannot retroactively change the recorded signer of an existing work.
+- Artist offline: scanning still works. Reading a stored receipt is clearly historical, not a new proof of freshness.
+- Synthetic identities/keys and mock verifiers cannot be enabled silently in production.
 
 Implementation agents must preserve all fixed constraints, use exact protocol vectors, define canonical encodings, and document dependencies and trusted issuers. No claim of physical presence, legal identity, copyright ownership, or global World ID should be inferred from the combined result.
 

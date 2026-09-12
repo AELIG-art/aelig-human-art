@@ -2,18 +2,18 @@ Last updated: 2026-09-06. Railway and GitHub are agreed platforms. The remaining
 
 ## Deployment Inventory
 
-| Component | Planned location | State and secrets |
-|-----------|------------------|-------------------|
-| Expo web build | Railway `web` service | Public configuration only |
-| HTTP API and World adapter | Railway `api` service | Short-lived sessions, provider credentials as necessary; no tag keys |
-| Jobs and transaction relay | Railway `worker` service | Gas-funded relayer credential, bounded job queue |
-| Operational database | Railway PostgreSQL | Drafts, sessions, job records, receipts; no authoritative authentication counter |
-| Registry and proof verifier | Selected EVM chain | Public certificates, commitments and counter state |
-| Confidential identity workflow | Chainlink CRE, subject to beta access | Sensitive application credential handling; not a Railway-hosted TEE |
-| Proving operators | Initially local; later independently administered hosts | Distinct persistent key shares and authenticated peer connections |
-| Artwork media and metadata | Public IPFS through Pinata plus an independent retained copy | Public content and content identifiers |
-| Issuer tooling | Controlled local workstation and NFC hardware | Transient provisioning secrets and operator-share distribution |
-| Source and automation | One public GitHub repository | Code, tests and public fixtures; no operational secrets |
+| Component                      | Planned location                                             | State and secrets                                                                |
+| ------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Expo web build                 | Railway `web` service                                        | Public configuration only                                                        |
+| HTTP API and World adapter     | Railway `api` service                                        | Short-lived sessions, provider credentials as necessary; no tag keys             |
+| Jobs and transaction relay     | Railway `worker` service                                     | Gas-funded relayer credential, bounded job queue                                 |
+| Operational database           | Railway PostgreSQL                                           | Drafts, sessions, job records, receipts; no authoritative authentication counter |
+| Registry and proof verifier    | Selected EVM chain                                           | Public certificates, commitments and counter state                               |
+| Confidential identity workflow | Chainlink CRE, subject to beta access                        | Sensitive application credential handling; not a Railway-hosted TEE              |
+| Proving operators              | Initially local; later independently administered hosts      | Distinct persistent key shares and authenticated peer connections                |
+| Artwork media and metadata     | Public IPFS through Pinata plus an independent retained copy | Public content and content identifiers                                           |
+| Issuer tooling                 | Controlled local workstation and NFC hardware                | Transient provisioning secrets and operator-share distribution                   |
+| Source and automation          | One public GitHub repository                                 | Code, tests and public fixtures; no operational secrets                          |
 
 ## Railway Project
 
@@ -27,16 +27,16 @@ Do not copy the authoritative counter into Postgres and use that copy to approve
 
 ## Accounts and Access Checklist
 
-| Access | What must be available before its integration is considered ready |
-|--------|-------------------------------------------------------------------|
-| GitHub | Public `aelig-human-art` repository, appropriate team access, branch policy and CI |
-| Railway | Shared project, deployment access, service secrets and spending controls |
-| World  | HumanArt app ID, RP configuration, Selfie Check feature flag and sandbox access on team devices |
-| World optional preview | Explicit Identity Check enablement if we implement it             |
-| Chainlink | CRE account and CLI access; separate live deployment/confidential-workflow permissions as required |
-| Alchemy | An RPC application for the selected development chain             |
-| Pinata | Public IPFS upload credentials with restricted scope, plus retrieval configuration |
-| Domain | A stable domain controlled by the team before non-disposable tags are personalized |
+| Access                 | What must be available before its integration is considered ready                                  |
+| ---------------------- | -------------------------------------------------------------------------------------------------- |
+| GitHub                 | Public `aelig-human-art` repository, appropriate team access, branch policy and CI                 |
+| Railway                | Shared project, deployment access, service secrets and spending controls                           |
+| World                  | HumanArt app ID, RP configuration, Selfie Check feature flag and sandbox access on team devices    |
+| World optional preview | Explicit Identity Check enablement if we implement it                                              |
+| Chainlink              | CRE account and CLI access; separate live deployment/confidential-workflow permissions as required |
+| Alchemy                | An RPC application for the selected development chain                                              |
+| Pinata                 | Public IPFS upload credentials with restricted scope, plus retrieval configuration                 |
+| Domain                 | A stable domain controlled by the team before non-disposable tags are personalized                 |
 
 Use environment variables or provider-managed secret storage with least privilege. Do not paste credentials into chat, documentation or public CI logs. Account access must be verified through each provider; a team member's personal World credential is not an application integration permission.
 
@@ -48,9 +48,9 @@ Do not select the final mainnet until the proof verifier, World authorization pa
 
 Separate operational roles:
 
-* Deployer: creates contracts; authority after deployment must be explicitly documented.
-* Issuer: registers prepared tags. This may share a development wallet initially, but remains a distinct permission.
-* Relayer: holds limited funds and pays for eligible user operations; must not gain issuer or author privileges.
+- Deployer: creates contracts; authority after deployment must be explicitly documented.
+- Issuer: registers prepared tags. This may share a development wallet initially, but remains a distinct permission.
+- Relayer: holds limited funds and pays for eligible user operations; must not gain issuer or author privileges.
 
 Use dedicated development wallets and never reuse a personal main wallet. Keep production-like funding small, monitor balances and enforce an application gas budget. Domain separation and one-time operation identifiers prevent a relay job from becoming an unrestricted transaction-signing service.
 
@@ -76,14 +76,14 @@ Domain control matters because tags contain a URL. A stable team-controlled name
 
 Proposed configuration categories, not existing variable names:
 
-| Category | Public or private | Examples |
-|----------|-------------------|----------|
-| Application configuration | Public            | Chain ID, registry address, protocol version, World app ID |
-| Provider access | Private/restricted | RPC service keys, IPFS upload credentials, database URL |
-| Transaction funding | Private           | Relayer signing credential |
-| World request signing | Private           | RP signing material, ideally protected by the selected confidential path |
-| Tag authentication | Secret-shared     | Operator shares; never ordinary Railway API environment variables |
-| Issuance | Highly sensitive  | Transient personalization material; never committed fixtures |
+| Category                  | Public or private  | Examples                                                                 |
+| ------------------------- | ------------------ | ------------------------------------------------------------------------ |
+| Application configuration | Public             | Chain ID, registry address, protocol version, World app ID               |
+| Provider access           | Private/restricted | RPC service keys, IPFS upload credentials, database URL                  |
+| Transaction funding       | Private            | Relayer signing credential                                               |
+| World request signing     | Private            | RP signing material, ideally protected by the selected confidential path |
+| Tag authentication        | Secret-shared      | Operator shares; never ordinary Railway API environment variables        |
+| Issuance                  | Highly sensitive   | Transient personalization material; never committed fixtures             |
 
 Keep sandbox and production credentials, author records, contracts and proof acceptance policies separate. A configuration flag must not accidentally make test World proofs acceptable in the production registry.
 
@@ -97,13 +97,13 @@ Track job duration, proving failures, transaction inclusion/finality, gas per ac
 
 ## Operational Completion Criteria
 
-* Restart a worker without losing or duplicating an activation.
-* Recover the database and reconcile it with chain receipts.
-* Switch RPC providers without changing certificate identity.
-* Retrieve artwork metadata when the primary gateway is down.
-* Verify an existing proof without the Railway API.
-* Document what stops when a proving operator is unavailable.
-* Restore an operator safely without combining all secret shares in a shared backup.
-* Separate health checks from authenticated user operations.
+- Restart a worker without losing or duplicating an activation.
+- Recover the database and reconcile it with chain receipts.
+- Switch RPC providers without changing certificate identity.
+- Retrieve artwork metadata when the primary gateway is down.
+- Verify an existing proof without the Railway API.
+- Document what stops when a proving operator is unavailable.
+- Restore an operator safely without combining all secret shares in a shared backup.
+- Separate health checks from authenticated user operations.
 
 These checks are planned; none is claimed to have passed yet.

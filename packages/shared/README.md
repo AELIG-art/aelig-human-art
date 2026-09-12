@@ -5,4 +5,3 @@ This package will contain versioned schemas, canonical encodings, identifiers, e
 Every value accepted by a proof or contract needs an exact canonical encoding. Do not use loosely typed JSON as a cryptographic boundary.
 
 Implementation status: not started.
-

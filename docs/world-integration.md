@@ -8,12 +8,12 @@ World is required for artist activation, not visitor verification. The NFC scan 
 
 ## Credential Policy
 
-| Credential | HumanArt policy | Meaning to expose in the interface |
-|------------|-----------------|------------------------------------|
-| Selfie Check | Sufficient for the base activation flow | Selfie/liveness check completed; returning-user continuity where supported |
-| Orb-backed Proof of Human | Optional        | Orb-backed unique-human credential |
-| Passport   | Optional        | Verified NFC passport credential; not interchangeable with Orb uniqueness |
-| Identity Check | Optional preview experiment | Specific supplied document-backed attributes matched |
+| Credential                | HumanArt policy                         | Meaning to expose in the interface                                         |
+| ------------------------- | --------------------------------------- | -------------------------------------------------------------------------- |
+| Selfie Check              | Sufficient for the base activation flow | Selfie/liveness check completed; returning-user continuity where supported |
+| Orb-backed Proof of Human | Optional                                | Orb-backed unique-human credential                                         |
+| Passport                  | Optional                                | Verified NFC passport credential; not interchangeable with Orb uniqueness  |
+| Identity Check            | Optional preview experiment             | Specific supplied document-backed attributes matched                       |
 
 The product accepts more than one assurance level but must label them differently. Do not describe a selfie as an Orb-equivalent check.
 
@@ -30,7 +30,6 @@ Sandbox follows the integration journey using test identities/proofs. TestFlight
 ## Activation Authorization Design
 
 Proposed flow:
-
 
 1. The artist scans an issued tag and completes the artwork form.
 2. HumanArt prepares a canonical activation digest containing protocol version, chain, contract, tag ID, metadata digest, intended author context, a single-use operation identifier and expiry.
@@ -63,13 +62,13 @@ Default public record: chosen artist name, scoped author reference, credential d
 
 ## UX and Error Requirements
 
-* Explain before handoff that World ID App is needed; do not promise a browser-only selfie.
-* Preserve the draft across mobile app switching, cancellation and recovery.
-* Show a QR fallback for desktop and test the real mobile deep-link round trip.
-* Support denied camera access, cancelled consent, failed matching, expired requests and unavailable preview features.
-* Never activate on a UI success callback alone; require verified server/contract evidence.
-* Never reuse a prior operation proof to activate another tag or modified artwork.
-* Distinguish account recovery from author reassignment. Support cannot silently rewrite authorship.
+- Explain before handoff that World ID App is needed; do not promise a browser-only selfie.
+- Preserve the draft across mobile app switching, cancellation and recovery.
+- Show a QR fallback for desktop and test the real mobile deep-link round trip.
+- Support denied camera access, cancelled consent, failed matching, expired requests and unavailable preview features.
+- Never activate on a UI success callback alone; require verified server/contract evidence.
+- Never reuse a prior operation proof to activate another tag or modified artwork.
+- Distinguish account recovery from author reassignment. Support cannot silently rewrite authorship.
 
 ## Integration Acceptance Evidence
 

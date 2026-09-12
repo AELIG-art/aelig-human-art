@@ -8,31 +8,31 @@ Team-reported status: the application was submitted; Davide and Giacomo were acc
 
 Official entry points:
 
-* [Event homepage and schedule](https://ethglobal.com/events/ethonline2026)
-* [Application](https://ethglobal.com/events/ethonline2026/apply)
-* [Participant information hub](https://ethglobal.com/events/ethonline2026/info)
-* [Getting started, team setup and check-ins](https://ethglobal.com/events/ethonline2026/info/start)
-* [Submission rules and judging](https://ethglobal.com/events/ethonline2026/info/details)
-* [All partner prizes](https://ethglobal.com/events/ethonline2026/prizes)
-* [Tools and resources](https://ethglobal.com/events/ethonline2026/info/resources)
-* [General rules and code of conduct](https://ethglobal.com/rules)
-* [ETHGlobal Discord](https://discord.com/invite/ethglobal)
+- [Event homepage and schedule](https://ethglobal.com/events/ethonline2026)
+- [Application](https://ethglobal.com/events/ethonline2026/apply)
+- [Participant information hub](https://ethglobal.com/events/ethonline2026/info)
+- [Getting started, team setup and check-ins](https://ethglobal.com/events/ethonline2026/info/start)
+- [Submission rules and judging](https://ethglobal.com/events/ethonline2026/info/details)
+- [All partner prizes](https://ethglobal.com/events/ethonline2026/prizes)
+- [Tools and resources](https://ethglobal.com/events/ethonline2026/info/resources)
+- [General rules and code of conduct](https://ethglobal.com/rules)
+- [ETHGlobal Discord](https://discord.com/invite/ethglobal)
 
 The event homepage timed out during this refresh. The participant information pages and prize pages were readable. Exact workshop times, a new applicant's deadline and dashboard-only items were not independently verified; do not substitute another year's event pages.
 
 ## Dates and Required Actions
 
-| Date or timing | Item | Action |
-|----------------|------|--------|
-| September 4, 2026 | Event begins | Preserve the real start time and development provenance |
-| During the event | Dashboard check-ins and partner support | Monitor authenticated dashboard, email and event Discord |
-| September 8 through submission | Chainlink liquidation challenge enrollment | Relevant only to that separate challenge, not HumanArt's planned track |
-| **September 13, 2026, 12:00 EDT** | **Project submission deadline** | Submit before the cutoff; no late submission |
-| **September 13, 2026, 18:00 CEST / 16:00 UTC** | Same deadline in Zurich/Italy and UTC | Use this conversion for team coordination |
-| After submission | Partner judging and possible finalist sessions | Follow the team's dashboard instructions |
-| September 16, 2026 | Event window ends | Do not confuse this with the coding submission deadline |
-| Usually three weeks after the event | Stake return for eligible submitters | Verify wallet and status in the dashboard |
-| September 30   | Arc deployment/deployment-readiness deadline | Applies to Arc launch tracks only; not a general extension |
+| Date or timing                                 | Item                                           | Action                                                                 |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
+| September 4, 2026                              | Event begins                                   | Preserve the real start time and development provenance                |
+| During the event                               | Dashboard check-ins and partner support        | Monitor authenticated dashboard, email and event Discord               |
+| September 8 through submission                 | Chainlink liquidation challenge enrollment     | Relevant only to that separate challenge, not HumanArt's planned track |
+| **September 13, 2026, 12:00 EDT**              | **Project submission deadline**                | Submit before the cutoff; no late submission                           |
+| **September 13, 2026, 18:00 CEST / 16:00 UTC** | Same deadline in Zurich/Italy and UTC          | Use this conversion for team coordination                              |
+| After submission                               | Partner judging and possible finalist sessions | Follow the team's dashboard instructions                               |
+| September 16, 2026                             | Event window ends                              | Do not confuse this with the coding submission deadline                |
+| Usually three weeks after the event            | Stake return for eligible submitters           | Verify wallet and status in the dashboard                              |
+| September 30                                   | Arc deployment/deployment-readiness deadline   | Applies to Arc launch tracks only; not a general extension             |
 
 Submission time comes from the [event-specific rules](https://ethglobal.com/events/ethonline2026/info/details). Staking/check-ins come from [participant onboarding](https://ethglobal.com/events/ethonline2026/info/start). Special track dates are linked in the sponsor sections below.
 
@@ -52,15 +52,15 @@ The team's live-session notes say an organization-owned GitHub repository is all
 
 ### HumanArt Compliance Plan
 
-* Prefer a genuinely new implementation, but confirm the selected track before importing existing project-specific material.
-* Disclose earlier brainstorming, this documentation's creation date, any reused implementation and all external libraries. A newly created repository does not erase earlier work.
-* Keep the repository public and readable throughout development; never fabricate commit history.
-* Include the real source of NFC test vectors and the licenses of cryptographic libraries.
-* Use readable explanations for human judges: what happens, what each dependency does, and what remains trusted.
-* Keep AI attribution specific to files, designs, specifications and review work. Do not claim the entire project was independently hand-written.
-* Record test versus production environments, local simulation versus live services, and the actual deployment state.
-* Keep the main video within the stricter event limit even when a sponsor mentions a five-minute video.
-* Do not buy extra services or force unrelated integrations simply to fill a third partner slot.
+- Prefer a genuinely new implementation, but confirm the selected track before importing existing project-specific material.
+- Disclose earlier brainstorming, this documentation's creation date, any reused implementation and all external libraries. A newly created repository does not erase earlier work.
+- Keep the repository public and readable throughout development; never fabricate commit history.
+- Include the real source of NFC test vectors and the licenses of cryptographic libraries.
+- Use readable explanations for human judges: what happens, what each dependency does, and what remains trusted.
+- Keep AI attribution specific to files, designs, specifications and review work. Do not claim the entire project was independently hand-written.
+- Record test versus production environments, local simulation versus live services, and the actual deployment state.
+- Keep the main video within the stricter event limit even when a sponsor mentions a five-minute video.
+- Do not buy extra services or force unrelated integrations simply to fill a third partner slot.
 
 The written submission page establishes a three-partner prize-selection limit. Earlier notes described this as a three-SDK limit. Do not turn that shorthand into a broader rule without written organizer confirmation; HumanArt currently targets only two partners anyway.
 
@@ -68,19 +68,19 @@ The written submission page establishes a three-partner prize-selection limit. E
 
 The current page lists **11 partner pools totaling $80,000**. This is our arithmetic sum of the listed pools, not a verified total including finalist perks, credits or bonuses. Earlier notes mentioned more than $100,000 overall; that larger figure is not substantiated by the current listed partner amounts alone. [Prize listing](https://ethglobal.com/events/ethonline2026/prizes)
 
-| Partner | Listed pool | HumanArt assessment |
-|---------|-------------|---------------------|
-| The Graph | $15,000     | Optional indexing; not required for counter safety |
-| Hedera  | $15,000     | Current tokenization track is enterprise-finance oriented, not generic art NFT minting |
-| Arc     | $10,000     | Stablecoin/payment focus; outside base scope |
-| World   | $7,000      | Selected integration direction: Selfie Check |
-| 1inch   | $7,000      | Aqua/DeFi focus; outside base scope |
-| ENS     | $5,000      | Explicitly deferred; naming complexity has insufficient artist benefit |
-| Uniswap Foundation | $5,000      | No required swap/liquidity workflow |
-| Ledger  | $5,000      | No required Ledger Agent Stack workflow |
-| Privy   | $5,000      | Current prizes require financial flows; not just simple onboarding |
-| Chainlink | $3,000      | Selected integration direction: confidential workflow |
-| Bazantic | $3,000      | No required agent/API recipe workflow |
+| Partner            | Listed pool | HumanArt assessment                                                                    |
+| ------------------ | ----------- | -------------------------------------------------------------------------------------- |
+| The Graph          | $15,000     | Optional indexing; not required for counter safety                                     |
+| Hedera             | $15,000     | Current tokenization track is enterprise-finance oriented, not generic art NFT minting |
+| Arc                | $10,000     | Stablecoin/payment focus; outside base scope                                           |
+| World              | $7,000      | Selected integration direction: Selfie Check                                           |
+| 1inch              | $7,000      | Aqua/DeFi focus; outside base scope                                                    |
+| ENS                | $5,000      | Explicitly deferred; naming complexity has insufficient artist benefit                 |
+| Uniswap Foundation | $5,000      | No required swap/liquidity workflow                                                    |
+| Ledger             | $5,000      | No required Ledger Agent Stack workflow                                                |
+| Privy              | $5,000      | Current prizes require financial flows; not just simple onboarding                     |
+| Chainlink          | $3,000      | Selected integration direction: confidential workflow                                  |
+| Bazantic           | $3,000      | No required agent/API recipe workflow                                                  |
 
 ## Selected Partner: Chainlink
 
@@ -164,44 +164,44 @@ HumanArt decision: no agent workflow is needed now. The dedicated partner URL fa
 
 ## Live Notes and Unresolved Conflicts
 
-| Item from team notes | Current interpretation | Required confirmation |
-|----------------------|------------------------|-----------------------|
-| Repository can belong to a GitHub organization | Retained as live-session guidance | Ensure public access and actual team attribution |
-| No separate team-creation deadline | Complete team before submission | Check dashboard membership and individual acceptance/stake |
-| Up to three partners | Written page confirms three prize selections | Do not infer a blanket three-library limit |
-| Extra $1,000 for valid projects | Superseded by the user's later live note about ten finalist projects | Verify eligibility, amount per project/person, and whether it is a bonus or finalist perk |
-| Top ten and substantial finalist benefits | Team-reported, not established as a full current benefits schedule | Obtain written ETHOnline-specific confirmation; do not copy another event's package |
-| Any chain is acceptable if deployed on mainnet | Too broad to treat as a confirmed universal requirement | ENS/Hedera explicitly use testnets; Chainlink permits simulation; confirm final HumanArt requirements |
-| Wallet used to deploy does not affect eligibility | Retained as live-session guidance | Still document operational roles and deployments |
-| Larger than $100,000 overall prize pool | Not established by the $80,000 listed sponsor sum | Check what bonuses/perks or unlisted awards explain the difference |
+| Item from team notes                              | Current interpretation                                               | Required confirmation                                                                                 |
+| ------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Repository can belong to a GitHub organization    | Retained as live-session guidance                                    | Ensure public access and actual team attribution                                                      |
+| No separate team-creation deadline                | Complete team before submission                                      | Check dashboard membership and individual acceptance/stake                                            |
+| Up to three partners                              | Written page confirms three prize selections                         | Do not infer a blanket three-library limit                                                            |
+| Extra $1,000 for valid projects                   | Superseded by the user's later live note about ten finalist projects | Verify eligibility, amount per project/person, and whether it is a bonus or finalist perk             |
+| Top ten and substantial finalist benefits         | Team-reported, not established as a full current benefits schedule   | Obtain written ETHOnline-specific confirmation; do not copy another event's package                   |
+| Any chain is acceptable if deployed on mainnet    | Too broad to treat as a confirmed universal requirement              | ENS/Hedera explicitly use testnets; Chainlink permits simulation; confirm final HumanArt requirements |
+| Wallet used to deploy does not affect eligibility | Retained as live-session guidance                                    | Still document operational roles and deployments                                                      |
+| Larger than $100,000 overall prize pool           | Not established by the $80,000 listed sponsor sum                    | Check what bonuses/perks or unlisted awards explain the difference                                    |
 
 The mainnet discrepancy should not prevent prototyping on Sepolia. It does mean the final deployment requirement must be confirmed for the selected event category and sponsor tracks. Simulation acceptance for one bounty is not universal approval to fake other project components.
 
 ## Changes Since Earlier Scouting
 
-* Chainlink's tracks are now published; older notes saying coming soon are obsolete.
-* World Selfie Check is the intended fit, not AgentKit by default and not an unconditional uniqueness claim.
-* The Graph has distinct new-project and Continuity AI pools; a simple counter query is not enough for the composability bounty.
-* The project has narrowed to prepared NFC certificates, simple artist activation and no extra NFT/wallet ceremony.
-* ZK plus MPC replaces a centralized full-key verification server as the proposed research direction.
-* ENS is deferred and the third partner slot remains unused.
-* Railway is selected for support services, with the tag-key trust boundary kept separate.
-* The project documentation is now independent of event scouting and uses the planned repository name `aelig-human-art`.
+- Chainlink's tracks are now published; older notes saying coming soon are obsolete.
+- World Selfie Check is the intended fit, not AgentKit by default and not an unconditional uniqueness claim.
+- The Graph has distinct new-project and Continuity AI pools; a simple counter query is not enough for the composability bounty.
+- The project has narrowed to prepared NFC certificates, simple artist activation and no extra NFT/wallet ceremony.
+- ZK plus MPC replaces a centralized full-key verification server as the proposed research direction.
+- ENS is deferred and the third partner slot remains unused.
+- Railway is selected for support services, with the tag-key trust boundary kept separate.
+- The project documentation is now independent of event scouting and uses the planned repository name `aelig-human-art`.
 
 ## Submission Preparation Checklist
 
-* Verify every participant and the final team in the dashboard.
-* Confirm Start Fresh versus Continuity and disclose earlier project-specific work accurately.
-* Provide the public repository, setup instructions, real commit history and licenses.
-* Include the architecture, protocol profile, limitations and AI-assistance record.
-* Provide a working demo with prepared test tags and safe tester instructions.
-* Record the physical scan, author check, activation, independent visitor verification and replay rejection.
-* Show explorer links and actual contract/circuit/workflow versions; label test and simulated components.
-* Select World and Chainlink only if their working integrations meet the current requirements.
-* Include World feedback and confidential-workflow execution evidence.
-* Choose finalist consideration explicitly if desired; partner selection is not the same action.
-* Use a clear human-narrated video within the event's duration/resolution rules.
-* Leave upload time before September 13 at 18:00 CEST, then inspect the submitted record.
-* Monitor dashboard/Discord afterward for judging, requested corrections, survey and stake return.
+- Verify every participant and the final team in the dashboard.
+- Confirm Start Fresh versus Continuity and disclose earlier project-specific work accurately.
+- Provide the public repository, setup instructions, real commit history and licenses.
+- Include the architecture, protocol profile, limitations and AI-assistance record.
+- Provide a working demo with prepared test tags and safe tester instructions.
+- Record the physical scan, author check, activation, independent visitor verification and replay rejection.
+- Show explorer links and actual contract/circuit/workflow versions; label test and simulated components.
+- Select World and Chainlink only if their working integrations meet the current requirements.
+- Include World feedback and confidential-workflow execution evidence.
+- Choose finalist consideration explicitly if desired; partner selection is not the same action.
+- Use a clear human-narrated video within the event's duration/resolution rules.
+- Leave upload time before September 13 at 18:00 CEST, then inspect the submitted record.
+- Monitor dashboard/Discord afterward for judging, requested corrections, survey and stake return.
 
 No prizes, finalist places, beta access grants or production guarantees are assumed in the project budget or pitch.
