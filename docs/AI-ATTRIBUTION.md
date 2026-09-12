@@ -2,7 +2,7 @@
 
 ## Use in this repository
 
-The team used ChatGPT/Codex to help structure and consolidate project documentation, research public technical documentation, draft the initial monorepo scaffold, and generate the dependency-free documentation check.
+The team used ChatGPT/Codex to help structure and consolidate project documentation, research public technical documentation, draft the initial monorepo scaffold, generate quality checks, and implement the initial Expo prototype for the artist and collector journeys.
 
 Team members remain responsible for the product decisions, threat-model review, protocol selection, implementation, test vectors, provider setup, hardware validation, and final submission. No generated document, code, or recommendation is treated as verified solely because an AI produced it.
 
@@ -11,6 +11,7 @@ Team members remain responsible for the product decisions, threat-model review, 
 - Root workspace configuration and documentation-check script.
 - Module README files.
 - Documentation under `docs/`, consolidated from team discussions, internal knowledge-base pages, and public source links.
+- The Expo app scaffold, local NFC URL parser, and explicitly non-production prototype screens under `apps/web/`.
 
 ## Rules for future AI-assisted work
 
@@ -21,4 +22,3 @@ Team members remain responsible for the product decisions, threat-model review, 
 - Keep the final ETHOnline disclosure specific about tools, files, and human contributions.
 
 This file is an attribution record, not a claim that every project file was AI-generated.
-

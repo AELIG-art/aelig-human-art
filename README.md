@@ -2,7 +2,7 @@
 
 HumanArt is a prototype for associating physical artwork with immutable AES NFC tags, artist-approved metadata, and World ID-backed artist attribution. A collector can scan a registered tag and retrieve an on-chain-backed verification result without trusting a mutable application database as the authority for tag state.
 
-This repository is the public implementation workspace for ETHOnline 2026. It currently contains the monorepo foundation and design documentation only. It does **not** yet contain deployed contracts, NFC key material, a working AES verifier, an operational World integration, or a production service.
+This repository is the public implementation workspace for ETHOnline 2026. It includes an Expo web prototype for the artist and collector journeys. It does **not** yet contain deployed contracts, NFC key material, a working AES verifier, an operational World integration, or a production service.
 
 ## Repository layout
 
@@ -30,7 +30,13 @@ Use Node.js 22 or later and pnpm 10 or later.
 pnpm check
 ```
 
-This check is dependency-free and validates the local documentation structure and links. Application dependencies will be added only when the relevant module is implemented.
+This validates documentation, linting, and TypeScript types. To run the web prototype locally:
+
+```sh
+pnpm --filter @humanart/web web
+```
+
+The interface has intentionally explicit local/sandbox labels until each cryptographic and provider-backed integration exists.
 
 ## Security and transparency
 
