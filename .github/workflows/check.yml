@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  documentation:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,4 +21,3 @@ jobs:
         with:
           version: 10
       - run: pnpm check
-

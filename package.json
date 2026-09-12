@@ -9,8 +9,13 @@
     "pnpm": ">=10.0.0"
   },
   "scripts": {
-    "check": "pnpm check:docs",
-    "check:docs": "node scripts/check-docs.mjs"
+    "check": "pnpm check:docs && pnpm check:lint",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0"
   }
 }
-
