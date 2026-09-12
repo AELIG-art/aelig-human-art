@@ -28,7 +28,7 @@ pnpm check:sol # EVM tests; requires Foundry 1.3.1 on PATH
 No API keys, RPC, wallet funds or real tags are needed for the local simulation.
 
 [Setup and hooks](CONTRIBUTING.md) |
-[Implementation status and review](docs/implementation-status.md) |
+[Architecture status](docs/ARCHITECTURE-STATUS.md) |
 [Architecture](docs/architecture.md) |
 [Development plan](docs/development-and-validation.md) |
 [AI attribution](docs/AI-ATTRIBUTION.md)
