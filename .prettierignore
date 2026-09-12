@@ -1,0 +1,11 @@
+node_modules/
+.venv/
+.expo/
+dist/
+build/
+coverage/
+.coverage/
+.pnpm-store/
+.idea/
+.vscode/
+pnpm-lock.yaml
