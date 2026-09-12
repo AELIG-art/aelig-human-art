@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "demo": "tsx demo.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

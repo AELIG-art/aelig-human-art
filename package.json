@@ -9,6 +9,9 @@
     "pnpm": ">=10.0.0"
   },
   "scripts": {
+    "dev": "pnpm --filter @humanart/web web",
+    "demo": "pnpm --filter @humanart/e2e-tests demo",
+    "check:sol": "pnpm --filter @humanart/contracts test:sol",
     "precommit": "pre-commit run --all-files --show-diff-on-failure",
     "hooks:install": "pre-commit install",
     "format": "prettier --write .",
