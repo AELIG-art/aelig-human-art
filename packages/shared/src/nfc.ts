@@ -1,4 +1,4 @@
-import type { TagRead } from "./types.js";
+import type { TagRead } from "./types";
 
 const tagIdPattern = /^[A-Z0-9][A-Z0-9-]{4,63}$/;
 const counterPattern = /^(0|[1-9]\d{0,77})$/;

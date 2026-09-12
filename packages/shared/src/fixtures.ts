@@ -1,4 +1,4 @@
-import type { ArtworkMetadata, TagRead } from "./types.js";
+import type { ArtworkMetadata, TagRead } from "./types";
 export const DEMO_TAG_READ: TagRead = {
   tagId: "HA-424-DEMO-00042",
   counter: "124",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { canonicalizeJson, computeArtworkDigest, keccak256 } from "./canonical.js";
-import { SAMPLE_ARTWORK_METADATA } from "./fixtures.js";
+import { canonicalizeJson, computeArtworkDigest, keccak256 } from "./canonical";
+import { SAMPLE_ARTWORK_METADATA } from "./fixtures";
 
 describe("metadata commitments", () => {
   it("matches a byte-level canonical JSON vector", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { buildNfcUrl, parseNfcUrl, MAX_COUNTER } from "./nfc.js";
-import { DEMO_TAG_READ, MALFORMED_NFC_URLS } from "./fixtures.js";
+import { buildNfcUrl, parseNfcUrl, MAX_COUNTER } from "./nfc";
+import { DEMO_TAG_READ, MALFORMED_NFC_URLS } from "./fixtures";
 describe("synthetic NFC envelope", () => {
   it("round-trips the fixture without losing large counters", () => {
     const read = { ...DEMO_TAG_READ, counter: MAX_COUNTER.toString() };

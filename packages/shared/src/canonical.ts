@@ -1,7 +1,7 @@
 import serialize from "canonicalize";
 import { keccak_256 } from "@noble/hashes/sha3";
 import { bytesToHex, utf8ToBytes } from "@noble/hashes/utils";
-import type { ArtworkMetadata } from "./types.js";
+import type { ArtworkMetadata } from "./types";
 
 // Restrict commitments to JSON data: reject silent coercions, sparse arrays,
 // cyclic structures and lone surrogates before invoking JCS.
