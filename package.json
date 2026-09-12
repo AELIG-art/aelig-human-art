@@ -15,11 +15,12 @@
     "check": "pnpm check:docs && pnpm check:lint && pnpm check:types && pnpm check:test",
     "check:docs": "node scripts/check-docs.mjs",
     "check:lint": "eslint .",
-    "check:types": "pnpm --filter @humanart/web typecheck",
-    "check:test": "pnpm --filter @humanart/web test"
+    "check:types": "pnpm --filter @humanart/shared typecheck && pnpm --filter @humanart/contracts typecheck && pnpm --filter @humanart/world-service typecheck && pnpm --filter @humanart/relayer-service typecheck && pnpm --filter @humanart/e2e-tests typecheck && pnpm --filter @humanart/web typecheck",
+    "check:test": "pnpm --filter @humanart/shared test && pnpm --filter @humanart/contracts test && pnpm --filter @humanart/world-service test && pnpm --filter @humanart/relayer-service test && pnpm --filter @humanart/e2e-tests test && pnpm --filter @humanart/web test"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^22.13.0",
     "@types/react": "^19.3.0",
     "eslint": "^10.10.0",
     "globals": "^17.12.0",

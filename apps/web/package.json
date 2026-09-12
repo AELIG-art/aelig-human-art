@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@humanart/shared": "workspace:*",
     "@expo/metro-runtime": "~55.0.12",
     "expo": "~55.0.31",
     "react": "19.2.0",

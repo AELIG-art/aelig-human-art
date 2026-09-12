@@ -1,0 +1,19 @@
+{
+  "name": "@humanart/e2e-tests",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@humanart/contracts": "workspace:*",
+    "@humanart/relayer-service": "workspace:*",
+    "@humanart/shared": "workspace:*",
+    "@humanart/world-service": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "4.20.5",
+    "typescript": "^5.9.3"
+  }
+}

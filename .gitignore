@@ -3,6 +3,8 @@ node_modules/
 .pnpm-store/
 dist/
 build/
+packages/contracts/out/
+packages/contracts/cache/
 .coverage/
 coverage/
 
