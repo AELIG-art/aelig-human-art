@@ -20,6 +20,7 @@ coverage/
 .expo/
 .DS_Store
 .idea/
+.junie/
 .vscode/
 *.log
 
