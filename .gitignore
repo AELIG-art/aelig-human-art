@@ -1,0 +1,26 @@
+# Dependencies and build output
+node_modules/
+.pnpm-store/
+dist/
+build/
+.coverage/
+coverage/
+
+# Environment and operational secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local tooling
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Cryptographic artifacts must be regenerated from documented public fixtures.
+*.zkey
+*.wtns
+*.ptau
+

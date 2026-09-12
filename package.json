@@ -1,0 +1,16 @@
+{
+  "name": "aelig-human-art",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HumanArt: on-chain-backed physical artwork certification with immutable AES NFC tags and World ID artist attribution.",
+  "packageManager": "pnpm@10.17.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "check": "pnpm check:docs",
+    "check:docs": "node scripts/check-docs.mjs"
+  }
+}
+
