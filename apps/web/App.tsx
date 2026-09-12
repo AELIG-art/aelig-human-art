@@ -15,7 +15,7 @@ import { demoTagRead, isDemoTag, normalizeTagId, parseNfcUrl, type TagRead } fro
 
 type Screen = "artist" | "collector" | "home";
 type ArtistStep = "identity" | "metadata" | "review";
-type WorldStatus = "not-started" | "sandbox-complete";
+type WorldStatus = "not-started" | "mock-complete";
 
 type ArtworkDraft = {
   description: string;
@@ -81,15 +81,17 @@ export default function App() {
   }, []);
 
   const normalizedTagId = normalizeTagId(tagId);
-  const enteredRead: TagRead | null = /^\d+$/.test(counter)
-    ? { counter, tagId: normalizedTagId }
-    : null;
+  const enteredRead = parseNfcUrl(
+    "https://humanart.invalid/?tag=" +
+      encodeURIComponent(normalizedTagId) +
+      "&counter=" +
+      encodeURIComponent(counter),
+  );
   const canPrepareDraft =
-    worldStatus === "sandbox-complete" &&
-    normalizedTagId.length > 0 &&
-    artwork.title.trim().length > 0;
+    worldStatus === "mock-complete" && enteredRead !== null && artwork.title.trim().length > 0;
 
   function updateArtwork<Key extends keyof ArtworkDraft>(key: Key, value: ArtworkDraft[Key]) {
+    setLocalDraftPrepared(false);
     setArtwork((current) => ({ ...current, [key]: value }));
   }
 
@@ -111,9 +113,12 @@ export default function App() {
               localDraftPrepared={localDraftPrepared}
               onArtworkChange={updateArtwork}
               onPrepareDraft={() => setLocalDraftPrepared(true)}
-              onStartWorld={() => setWorldStatus("sandbox-complete")}
+              onStartWorld={() => setWorldStatus("mock-complete")}
               onStepChange={setArtistStep}
-              onTagIdChange={setTagId}
+              onTagIdChange={(value) => {
+                setTagId(value);
+                setLocalDraftPrepared(false);
+              }}
               step={artistStep}
               tagId={tagId}
               worldStatus={worldStatus}
@@ -124,7 +129,10 @@ export default function App() {
               counter={counter}
               onCounterChange={setCounter}
               onInspect={inspectRead}
-              onTagIdChange={setTagId}
+              onTagIdChange={(value) => {
+                setTagId(value);
+                setLocalDraftPrepared(false);
+              }}
               read={collectorRead}
               tagId={tagId}
             />
@@ -225,7 +233,7 @@ function PrototypeBoundary() {
     <View style={styles.note}>
       <Text style={styles.noteLabel}>Prototype boundary</Text>
       <Text style={styles.noteCopy}>
-        This interface currently uses local sandbox state. It does not verify a World credential,
+        This interface currently uses local mock state. It does not verify a World credential,
         control a wallet, decrypt a tag message, or submit an on-chain transaction.
       </Text>
     </View>
@@ -291,16 +299,12 @@ function ArtistActivation({
             </Text>
             <EvidenceLine
               label="World ID"
-              status={
-                worldStatus === "sandbox-complete" ? "Sandbox interaction completed" : "Not started"
-              }
-              tone={worldStatus === "sandbox-complete" ? "caution" : "neutral"}
+              status={worldStatus === "mock-complete" ? "Local mock completed" : "Not started"}
+              tone={worldStatus === "mock-complete" ? "caution" : "neutral"}
             />
             <EvidenceLine label="Wallet authorization" status="Not connected" tone="neutral" />
             <PrimaryButton
-              label={
-                worldStatus === "sandbox-complete" ? "Sandbox completed" : "Run World sandbox step"
-              }
+              label={worldStatus === "mock-complete" ? "Local mock completed" : "Try identity mock"}
               onPress={onStartWorld}
             />
             <Text style={styles.finePrint}>
@@ -418,7 +422,7 @@ function ArtistActivation({
         )}
         {step === "review" ? null : (
           <PrimaryButton
-            disabled={step === "identity" && worldStatus !== "sandbox-complete"}
+            disabled={step === "identity" && worldStatus !== "mock-complete"}
             label="Continue"
             onPress={() => onStepChange(nextStep)}
           />
@@ -480,7 +484,7 @@ function Aside({
     <View style={styles.aside}>
       <Text style={styles.asideKicker}>{kicker}</Text>
       <Text style={styles.asideTitle}>{title}</Text>
-      {children}
+      {typeof children === "string" ? <Text style={styles.asideCopy}>{children}</Text> : children}
     </View>
   );
 }
@@ -673,7 +677,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     flex: 1,
     justifyContent: "center",
-    minWidth: 280,
+    minWidth: 240,
     padding: 28,
   },
   asideCopy: { color: "#d9e4d7", fontSize: 16, lineHeight: 25, marginTop: 16 },
@@ -806,7 +810,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 1,
     flex: 1.35,
-    minWidth: 300,
+    minWidth: 240,
     padding: 28,
   },
   panelCopy: { color: "#59655e", fontSize: 16, lineHeight: 25, marginTop: 12 },
@@ -872,7 +876,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     borderWidth: 1,
     flex: 1,
-    minWidth: 300,
+    minWidth: 240,
     padding: 28,
   },
   scrollContent: { flexGrow: 1 },
