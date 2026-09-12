@@ -9,13 +9,17 @@
     "pnpm": ">=10.0.0"
   },
   "scripts": {
-    "check": "pnpm check:docs && pnpm check:lint",
+    "check": "pnpm check:docs && pnpm check:lint && pnpm check:types",
     "check:docs": "node scripts/check-docs.mjs",
-    "check:lint": "eslint ."
+    "check:lint": "eslint .",
+    "check:types": "pnpm --filter @humanart/web typecheck"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/react": "^19.3.0",
     "eslint": "^10.10.0",
-    "globals": "^17.12.0"
+    "globals": "^17.12.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.0"
   }
 }

@@ -1,5 +1,6 @@
 import js from "@eslint/js";
 import globals from "globals";
+import tseslint from "typescript-eslint";
 
 export default [
   {
@@ -15,13 +16,7 @@ export default [
     rules: js.configs.recommended.rules,
   },
   {
-    files: [
-      "apps/**/*.{js,jsx,ts,tsx}",
-      "packages/**/*.{js,jsx,ts,tsx}",
-      "services/**/*.{js,jsx,ts,tsx}",
-      "tools/**/*.{js,jsx,ts,tsx}",
-      "tests/**/*.{js,jsx,ts,tsx}",
-    ],
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: "latest",
       globals: globals.browser,
@@ -29,4 +24,8 @@ export default [
     },
     rules: js.configs.recommended.rules,
   },
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ["**/*.{ts,tsx}"],
+  })),
 ];

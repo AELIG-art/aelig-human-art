@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "HumanArt",
+    "slug": "humanart",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "humanart",
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    }
+  }
+}
